@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://e6l88kmd53l0"]
+
+[ext_resource type="Script" uid="uid://di435xmelq8h2" path="res://scenes/levels/level_manager.gd" id="1_gmg8n"]
+
+[node name="Level_manager" type="Node3D"]
+script = ExtResource("1_gmg8n")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

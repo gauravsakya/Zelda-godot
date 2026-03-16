@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3wsl0k8ghx23"]
+
+[ext_resource type="PackedScene" uid="uid://daovb46045rrx" path="res://graphics/environment/overworld_environment.blend" id="1_0nyyx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pamjw"]
+albedo_color = Color(0.823529, 0.54902, 0.705882, 1)
+metallic = 0.1
+
+[node name="overworld_environment_desert" instance=ExtResource("1_0nyyx")]
+
+[node name="Floor" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_pamjw")

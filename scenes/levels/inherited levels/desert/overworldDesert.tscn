@@ -1,0 +1,219 @@
+[gd_scene load_steps=24 format=3 uid="uid://dain1do3pgxsd"]
+
+[ext_resource type="PackedScene" uid="uid://c80ewa62atoxx" path="res://scenes/levels/level.tscn" id="1_3b2mx"]
+[ext_resource type="Script" uid="uid://u1ka465n6nyn" path="res://scenes/levels/overworld.gd" id="2_edfib"]
+[ext_resource type="PackedScene" uid="uid://de3a3dbcnxcnt" path="res://scenes/entities/other/bird.tscn" id="3_cfdrd"]
+[ext_resource type="PackedScene" uid="uid://buqhyqxminuo" path="res://scenes/entities/enemies/boss.tscn" id="4_qm4a4"]
+[ext_resource type="PackedScene" uid="uid://c7d1qhfqo7yhd" path="res://scenes/levels/overworld_skin.tscn" id="6_5d7d5"]
+[ext_resource type="Script" uid="uid://bvkl81petqt5w" path="res://scenes/randomize/trees.gd" id="7_umxem"]
+[ext_resource type="PackedScene" uid="uid://cl6jdraxnqkty" path="res://graphics/environment/objects/rocks1.glb" id="16_fsr0r"]
+[ext_resource type="PackedScene" uid="uid://cj0l2q4u7m6ly" path="res://graphics/environment/objects/rocks2.glb" id="17_pvjxn"]
+[ext_resource type="PackedScene" uid="uid://b8s8m1ioli7o1" path="res://Global/boss_checker.tscn" id="17_ud3un"]
+[ext_resource type="PackedScene" uid="uid://cw8b2woh0hlrx" path="res://graphics/environment/objects/rocks3.glb" id="18_ikjnm"]
+[ext_resource type="PackedScene" uid="uid://b4rhqen2u7u1d" path="res://graphics/environment/objects/campfire.glb" id="25_rwkhh"]
+[ext_resource type="PackedScene" uid="uid://slk1ga1hqhs2" path="res://graphics/environment/objects/box.glb" id="26_k3qny"]
+[ext_resource type="PackedScene" uid="uid://defd80nyuanxo" path="res://graphics/environment/objects/barrel.glb" id="27_qkpu1"]
+[ext_resource type="PackedScene" uid="uid://busa8h5c44075" path="res://graphics/environment/objects/platoon.glb" id="28_vfj8f"]
+[ext_resource type="PackedScene" uid="uid://dxvaiymlygd8b" path="res://graphics/environment/objects/camp.glb" id="29_iip12"]
+[ext_resource type="PackedScene" uid="uid://d2pglgy0w12pg" path="res://graphics/environment/objects/chest.glb" id="30_63n2r"]
+[ext_resource type="PackedScene" uid="uid://brlwya60kj6qf" path="res://scenes/levels/bridge.tscn" id="31_wyxha"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hkej2"]
+sky_top_color = Color(0.367554, 0.773052, 0.958684, 1)
+sky_horizon_color = Color(0.638261, 0.735962, 0.782066, 1)
+ground_bottom_color = Color(0.185491, 0.170795, 0.169581, 1)
+ground_horizon_color = Color(0.638261, 0.735962, 0.782066, 1)
+
+[sub_resource type="Sky" id="Sky_hr4cs"]
+sky_material = SubResource("ProceduralSkyMaterial_hkej2")
+
+[sub_resource type="Environment" id="Environment_f3bnl"]
+background_mode = 1
+background_color = Color(0.482353, 0.509804, 0.901961, 1)
+sky = SubResource("Sky_hr4cs")
+ambient_light_source = 2
+ambient_light_color = Color(0.968627, 0.835294, 0.858824, 1)
+ambient_light_energy = 0.6
+ssr_max_steps = 14
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+glow_intensity = 0.09
+glow_strength = 0.85
+glow_blend_mode = 1
+fog_enabled = true
+fog_light_color = Color(0.509804, 0.87451, 0.890196, 1)
+fog_density = 0.0001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0161
+adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_contrast = 1.2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_k8aeh"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 150.0
+dof_blur_far_transition = 250.0
+dof_blur_amount = 0.06
+
+[sub_resource type="Curve3D" id="Curve3D_bncnu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -75.5815, 0, 110.116, -100.677, 0, -14.3824, 100.677, 0, 14.3824, 115.499, 0, 109.294, -1.23279, 0, -64.1044, 1.23279, 0, 64.1044, 243.708, 0, 209.56, 176.287, 0, -4.5202, -176.287, 0, 4.5202, 46.8743, 0, 389.956, 2.05466, 0, 142.591, -2.05466, 0, -142.591, -203.379, 0, 276.54, 0, 0, 0, 0, 0, 0, -75.5815, 0, 110.116),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
+}
+point_count = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40ktu"]
+albedo_color = Color(0.960784, 0.870588, 0.701961, 1)
+metallic_specular = 0.3
+roughness = 0.85
+
+[node name="Overworld" instance=ExtResource("1_3b2mx")]
+script = ExtResource("2_edfib")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="0"]
+environment = SubResource("Environment_f3bnl")
+camera_attributes = SubResource("CameraAttributesPractical_k8aeh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="1"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.941176, 0.941176, 0.941176, 1)
+shadow_enabled = true
+shadow_opacity = 0.9
+shadow_blur = 4.5
+
+[node name="Player" parent="Entities" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6247, -32.0762, 193.985)
+
+[node name="Path3D" type="Path3D" parent="Entities" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.5179, 76.5654, -45.2434)
+curve = SubResource("Curve3D_bncnu")
+
+[node name="Bird" parent="Entities/Path3D" index="0" instance=ExtResource("3_cfdrd")]
+transform = Transform3D(-0.088758, 0, 0.996053, 0, 1, 0, -0.996053, 0, -0.088758, -40.8621, 0, 105.991)
+progress = 34.97
+use_model_front = true
+
+[node name="Boss" parent="Entities" index="2" instance=ExtResource("4_qm4a4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0751, -18.3549, 193.146)
+
+[node name="overworld_environment" parent="Environment" index="0" instance=ExtResource("6_5d7d5")]
+
+[node name="Floor" parent="Environment/overworld_environment" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_40ktu")
+
+[node name="Rocks" type="Node3D" parent="Environment" index="1"]
+script = ExtResource("7_umxem")
+
+[node name="rocks1" parent="Environment/Rocks" index="0" instance=ExtResource("16_fsr0r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.141, 12.1682, -93.4384)
+
+[node name="rocks2" parent="Environment/Rocks" index="1" instance=ExtResource("16_fsr0r")]
+transform = Transform3D(0.245358, 0, -0.969433, 0, 1, 0, 0.969433, 0, 0.245358, 40.083, 1.50853, -80.1363)
+
+[node name="rocks3" parent="Environment/Rocks" index="2" instance=ExtResource("17_pvjxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.8978, -25.868, 9.35608)
+
+[node name="rocks4" parent="Environment/Rocks" index="3" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.6547, -24.7349, 22.2026)
+
+[node name="rocks9" parent="Environment/Rocks" index="4" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.922, -24.7349, 81.2611)
+
+[node name="rocks10" parent="Environment/Rocks" index="5" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.173, -30, 118.425)
+
+[node name="rocks11" parent="Environment/Rocks" index="6" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -151.915, -24.7349, 79.9309)
+
+[node name="rocks12" parent="Environment/Rocks" index="7" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.774, -24.7349, 138.989)
+
+[node name="rocks13" parent="Environment/Rocks" index="8" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.4325, -24.7349, 176.153)
+
+[node name="rocks14" parent="Environment/Rocks" index="9" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.22208, -24.7349, 79.9309)
+
+[node name="rocks15" parent="Environment/Rocks" index="10" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.3624, -24.7349, 138.989)
+
+[node name="rocks16" parent="Environment/Rocks" index="11" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 73.7042, -24.7349, 176.153)
+
+[node name="rocks17" parent="Environment/Rocks" index="12" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.8, -24.7349, 225.754)
+
+[node name="rocks18" parent="Environment/Rocks" index="13" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.6601, -24.7349, 284.812)
+
+[node name="rocks19" parent="Environment/Rocks" index="14" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3183, -24.7349, 321.976)
+
+[node name="rocks20" parent="Environment/Rocks" index="15" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.8, -12.7937, -119.965)
+
+[node name="rocks21" parent="Environment/Rocks" index="16" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.6601, -12.7937, -60.9069)
+
+[node name="rocks22" parent="Environment/Rocks" index="17" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.3183, -12.7937, -23.743)
+
+[node name="rocks23" parent="Environment/Rocks" index="18" instance=ExtResource("18_ikjnm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.4915, 2.89102, -53.7337)
+
+[node name="Structures" type="Node3D" parent="Environment" index="2"]
+
+[node name="platoon" parent="Environment/Structures" index="0" instance=ExtResource("28_vfj8f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96495, -45.4082, 240.101)
+
+[node name="platoon2" parent="Environment/Structures" index="1" instance=ExtResource("28_vfj8f")]
+transform = Transform3D(0.664552, 0, -0.747242, 0, 1, 0, 0.747242, 0, 0.664552, -163.551, -44.7926, 203.813)
+
+[node name="camp" parent="Environment/Structures" index="2" instance=ExtResource("29_iip12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.597, -33.7069, 137.986)
+
+[node name="camp2" parent="Environment/Structures" index="3" instance=ExtResource("29_iip12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63.6242, -33.7069, 89.9135)
+
+[node name="camp3" parent="Environment/Structures" index="4" instance=ExtResource("29_iip12")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -108.077, -30.1791, 70.4255)
+
+[node name="chest" parent="Environment/Structures" index="5" instance=ExtResource("30_63n2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.187, -29.2528, 73.543)
+
+[node name="campfire" parent="Environment/Structures" index="6" instance=ExtResource("25_rwkhh")]
+transform = Transform3D(0.996786, 0.0792937, -0.0114207, -0.0801119, 0.986605, -0.142102, 0, 0.14256, 0.989786, -104.265, -30.2243, 78.5022)
+
+[node name="campfire2" parent="Environment/Structures" index="7" instance=ExtResource("25_rwkhh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.5842, -33.6017, 147.226)
+
+[node name="box2" parent="Environment/Structures" index="8" instance=ExtResource("26_k3qny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.1571, -33.883, 141.434)
+
+[node name="barrel" parent="Environment/Structures" index="9" instance=ExtResource("27_qkpu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.6472, -33.9705, 142.62)
+
+[node name="barrel2" parent="Environment/Structures" index="10" instance=ExtResource("27_qkpu1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.0437, -33.9705, 137.745)
+
+[node name="bridge" parent="Environment/Structures" index="11" instance=ExtResource("31_wyxha")]
+transform = Transform3D(0.928687, 0, -0.370865, 0, 1, 0, 0.370865, 0, 0.928687, -13.8936, -42.7196, 260.078)
+
+[node name="Camera3D" type="Camera3D" parent="." index="5"]
+transform = Transform3D(1, 0, 0, 0, 0.958028, 0.286675, 0, -0.286675, 0.958028, 0, 25.2054, -45.3509)
+
+[node name="Level_name" type="Label" parent="." index="7"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.5
+offset_right = 171.5
+offset_bottom = 76.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 55
+text = "Level: Desert"
+
+[node name="BossChecker" parent="." index="8" instance=ExtResource("17_ud3un")]
+
+[editable path="Environment/overworld_environment"]
